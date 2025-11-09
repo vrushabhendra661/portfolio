@@ -1,0 +1,71 @@
+<section id="tech-stack" class="tech-stack-section">
+  <div class="container">
+    <div class="section-header" [@slideInUp]="visible">
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+    </div>
+
+    <div class="categories-grid" [@staggerGrid]="visible">
+      <div class="category-section" *ngFor="let category of categories">
+        <div class="category-header">
+          <mat-icon>{{ category.icon }}</mat-icon>
+          <h3>{{ category.label }}</h3>
+        </div>
+        
+        <div class="tech-grid">
+          <div 
+            class="tech-card"
+            *ngFor="let tech of getTechnologiesByCategory(category.key)"
+            [@scaleOnHover]="hoveredTech === tech.name ? 'hovered' : 'normal'"
+            (mouseenter)="onTechHover(tech.name)"
+            (mouseleave)="onTechLeave()"
+            [matTooltip]="tech.experience"
+            matTooltipPosition="above"
+            [style.--tech-color]="tech.color">
+            
+            <div class="tech-icon">
+              <span class="icon-emoji">{{ tech.icon }}</span>
+            </div>
+            
+            <div class="tech-info">
+              <h4 class="tech-name">{{ tech.name }}</h4>
+              <div class="skill-level">
+                <mat-icon 
+                  *ngFor="let star of getStars(tech.level)"
+                  [class.filled]="star === 'star'"
+                  class="star">
+                  {{ star }}
+                </mat-icon>
+              </div>
+              <p class="experience">{{ tech.experience }}</p>
+            </div>
+            
+            <div class="tech-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overall-stats" [@slideInUp]="visible">
+      <div class="stat-card">
+        <div class="stat-number">{{ technologies.length }}+</div>
+        <div class="stat-label">Technologies</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Learning Mindset</div>
+      </div>
+    </div>
+  </div>
+</section>

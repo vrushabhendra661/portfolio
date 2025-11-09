@@ -1,0 +1,58 @@
+<section id="education" class="education-section">
+  <div class="container">
+    <div class="section-header" [@slideInUp]="visible">
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">My academic journey and achievements</p>
+    </div>
+
+    <div class="timeline" [@staggerAnimation]="visible">
+      <div class="timeline-item" *ngFor="let edu of educationData; let i = index" [class.reverse]="i % 2 === 1">
+        <div class="timeline-content">
+          <mat-card class="education-card">
+            <mat-card-header>
+              <div class="card-header-content">
+                <div class="year-badge">{{ edu.year }}</div>
+                <div class="degree-info">
+                  <mat-card-title>{{ edu.degree }}</mat-card-title>
+                  <mat-card-subtitle class="school-name">
+                    <mat-icon>school</mat-icon>
+                    {{ edu.school }}
+                  </mat-card-subtitle>
+                </div>
+              </div>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <div class="duration">
+                <mat-icon>schedule</mat-icon>
+                <span>{{ edu.duration }}</span>
+              </div>
+              
+              <p class="description">{{ edu.description }}</p>
+              
+              <!-- <div class="gpa" *ngIf="edu.gpa">
+                <strong>GPA: {{ edu.gpa }}</strong>
+              </div> -->
+              
+              <div class="achievements" *ngIf="edu.achievements && edu.achievements.length > 0">
+                <h4>Key Achievements:</h4>
+                <ul>
+                  <li *ngFor="let achievement of edu.achievements">
+                    <mat-icon>star</mat-icon>
+                    {{ achievement }}
+                  </li>
+                </ul>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        
+        <div class="timeline-marker">
+          <div class="marker-icon">
+            <mat-icon>school</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

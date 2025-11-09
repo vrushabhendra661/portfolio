@@ -1,0 +1,40 @@
+<mat-toolbar [class.scrolled]="isScrolled" class="navbar">
+  <div class="navbar-container">
+    <!-- Logo/Name -->
+    <div class="logo" (click)="scrollToSection('hero')">
+      <span class="logo-text">Portfolio</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <button 
+        mat-button 
+        *ngFor="let item of menuItems" 
+        (click)="scrollToSection(item.anchor)"
+        class="nav-item">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      mat-icon-button 
+      class="mobile-menu-btn"
+      (click)="toggleMobileMenu()">
+      <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" [class.open]="isMobileMenuOpen">
+    <button 
+      mat-button 
+      *ngFor="let item of menuItems" 
+      (click)="scrollToSection(item.anchor)"
+      class="mobile-nav-item">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span>{{ item.label }}</span>
+    </button>
+  </div>
+</mat-toolbar>

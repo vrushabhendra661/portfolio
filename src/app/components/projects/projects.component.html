@@ -1,0 +1,102 @@
+<section id="projects" class="projects-section">
+  <div class="container">
+    <div class="section-header" [@slideIn]="visible">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Some of my recent work and side projects</p>
+    </div>
+
+    <div class="carousel-container" [@slideIn]="visible">
+      <div class="carousel-controls">
+        <button 
+          mat-icon-button 
+          class="carousel-btn prev" 
+          [disabled]="currentIndex === 0"
+          (click)="prevSlide()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        
+        <button 
+          mat-icon-button 
+          class="carousel-btn next" 
+          [disabled]="currentIndex >= projects.length - itemsPerView"
+          (click)="nextSlide()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+
+      <div 
+        class="carousel" 
+        #carousel
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp()"
+        (mouseleave)="onMouseUp()">
+        
+        <div class="project-card" *ngFor="let project of projects; trackBy: trackByProjectId">
+          <mat-card class="project-card-content">
+            <div class="card-image">
+              <img [src]="project.image" [alt]="project.title" loading="lazy">
+              <div class="image-overlay">
+                <button 
+                  mat-fab 
+                  color="primary" 
+                  class="demo-btn"
+                  (click)="openLink(project.demoUrl)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+              </div>
+              <div class="featured-badge" *ngIf="project.featured">
+                <mat-icon>star</mat-icon>
+                Featured
+              </div>
+            </div>
+
+            <mat-card-content class="card-content">
+              <mat-card-header class="card-header">
+                <mat-card-title>{{ project.title }}</mat-card-title>
+              </mat-card-header>
+
+              <p class="project-description">{{ project.description }}</p>
+
+              <div class="tech-stack">
+                <mat-chip-set>
+                  <mat-chip *ngFor="let tech of project.technologies" class="tech-chip">
+                    {{ tech }}
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+
+              <div class="card-actions">
+                <button 
+                  mat-stroked-button 
+                  class="action-btn"
+                  (click)="openLink(project.githubUrl)">
+                  <mat-icon>code</mat-icon>
+                  View Code
+                </button>
+                
+                <!-- <button 
+                  mat-raised-button 
+                  color="primary" 
+                  class="action-btn"
+                  (click)="openLink(project.demoUrl)">
+                  <mat-icon>launch</mat-icon>
+                  Live Demo
+                </button> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="carousel-indicators">
+        <div 
+          class="indicator" 
+          *ngFor="let project of projects; let i = index"
+          [class.active]="i >= currentIndex && i < currentIndex + itemsPerView"
+          (click)="currentIndex = i; scrollToIndex()">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header" [@slideInUp]="visible">
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-subtitle">My professional journey and career highlights</p>
+    </div>
+
+    <div class="timeline" [@staggerAnimation]="visible">
+      <div class="timeline-item" *ngFor="let exp of experiences; let i = index" [class.reverse]="i % 2 === 1">
+        <div class="timeline-content">
+          <mat-card class="experience-card">
+            <mat-card-header>
+              <div class="card-header-content">
+                <div class="company-logo">
+                  <img [src]="exp.logo" [alt]="exp.company + ' logo'" loading="lazy">
+                  <div class="current-badge" *ngIf="exp.current">
+                    <mat-icon>work</mat-icon>
+                    Current
+                  </div>
+                </div>
+                <div class="position-info">
+                  <mat-card-title>{{ exp.position }}</mat-card-title>
+                  <mat-card-subtitle class="company-name">
+                    <mat-icon>business</mat-icon>
+                    {{ exp.company }}
+                  </mat-card-subtitle>
+                  <div class="meta-info">
+                    <span class="duration">
+                      <mat-icon>schedule</mat-icon>
+                      {{ exp.duration }}
+                    </span>
+                    <span class="location">
+                      <mat-icon>location_on</mat-icon>
+                      {{ exp.location }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <p class="description">{{ exp.description }}</p>
+              
+              <div class="achievements">
+                <h4>Key Achievements:</h4>
+                <ul>
+                  <li *ngFor="let achievement of exp.achievements">
+                    <mat-icon>check_circle</mat-icon>
+                    {{ achievement }}
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="technologies">
+                <h4>Technologies Used:</h4>
+                <mat-chip-set>
+                  <mat-chip *ngFor="let tech of exp.technologies" class="tech-chip">
+                    {{ tech }}
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        
+        <div class="timeline-marker">
+          <div class="marker-icon">
+            <mat-icon>work</mat-icon>
+          </div>
+          <div class="marker-line" *ngIf="i < experiences.length - 1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
