@@ -70,7 +70,7 @@ export class ContactComponent implements OnInit {
   socialLinks: SocialLink[] = [
     {
       name: 'GitHub',
-      url: 'https://github.com/Vrushabhendra_Kumar_K_N.jpg',
+      url: 'https://github.com/vrushabhendra661',
       icon: 'code',
       color: '#333333'
     },
